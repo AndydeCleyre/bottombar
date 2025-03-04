@@ -23,25 +23,26 @@ KWin.TabBoxSwitcher {
 
     PlasmaCore.Dialog {
         id: dialog
-        location: Qt.application.layoutDirection === Qt.RightToLeft ? PlasmaCore.Types.RightEdge : PlasmaCore.Types.LeftEdge
+        location: PlasmaCore.Types.BottomEdge
         visible: tabBox.visible
         flags: Qt.X11BypassWindowManagerHint
-        x: screenGeometry.x + (Qt.application.layoutDirection === Qt.RightToLeft ? screenGeometry.width - width : 0)
-        y: screenGeometry.y
+        x: screenGeometry.x
+        y: screenGeometry.y + screenGeometry.height - height
 
         mainItem: PlasmaComponents.ScrollView {
             id: dialogMainItem
 
             focus: true
 
-            contentWidth: tabBox.screenGeometry.width * 0.15
-            height: tabBox.screenGeometry.height - dialog.margins.top - dialog.margins.bottom
+            contentWidth: tabBox.screenGeometry.width - dialog.margins.left - dialog.margins.right
+            height: tabBox.screenGeometry.height * 0.15
 
             LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
             LayoutMirroring.childrenInherit: true
 
             ListView {
                 id: thumbnailListView
+                orientation: ListView.Horizontal
                 focus: true
                 model: tabBox.model
                 spacing: Kirigami.Units.smallSpacing
@@ -57,8 +58,8 @@ KWin.TabBoxSwitcher {
                 }
 
                 delegate: MouseArea {
-                    width: thumbnailListView.width
-                    height: delegateColumn.implicitHeight + 2 * delegateColumn.anchors.margins
+                    width: Math.round(thumbnailListView.height * tabBox.screenFactor)
+                    height: thumbnailListView.height
                     focus: ListView.isCurrentItem
 
                     Accessible.name: model.caption
@@ -75,23 +76,11 @@ KWin.TabBoxSwitcher {
                     ColumnLayout {
                         id: delegateColumn
                         anchors {
-                            left: parent.left
-                            top: parent.top
-                            right: parent.right
+                            fill: parent
                             margins: Kirigami.Units.smallSpacing
                         }
 
                         spacing: Kirigami.Units.smallSpacing
-
-                        Item {
-                            Layout.fillWidth: true
-                            implicitHeight: Math.round(delegateColumn.width / tabBox.screenFactor)
-
-                            KWin.WindowThumbnail {
-                                anchors.fill: parent
-                                wId: windowId
-                            }
-                        }
 
                         RowLayout {
                             spacing: Kirigami.Units.smallSpacing
@@ -115,6 +104,16 @@ KWin.TabBoxSwitcher {
                                 textFormat: Text.PlainText
                             }
                         }
+
+                        Item {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+
+                            KWin.WindowThumbnail {
+                                anchors.fill: parent
+                                wId: windowId
+                            }
+                        }
                     }
                 }
 
@@ -131,4 +130,3 @@ KWin.TabBoxSwitcher {
         }
     }
 }
-
