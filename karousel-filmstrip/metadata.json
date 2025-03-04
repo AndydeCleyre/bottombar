@@ -1,0 +1,15 @@
+{
+    "KPackageStructure": "KWin/WindowSwitcher",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "AndyKluger@gmail.com",
+                "Name": "Andy Kluger"
+            }
+        ],
+        "Description": "Window switcher with a horizontal bar, triggering Karousel focus actions",
+        "Id": "karousel-filmstrip",
+        "License": "GPLv2+",
+        "Name": "Karousel Filmstrip"
+    }
+}
