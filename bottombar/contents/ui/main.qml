@@ -49,10 +49,6 @@ KWin.TabBoxSwitcher {
                 highlightResizeDuration: 0
                 clip: true
 
-                preferredHighlightBegin: currentItem ? width / 2 - currentItem.width / 2 : 0
-                preferredHighlightEnd: preferredHighlightBegin
-                highlightRangeMode: ListView.ApplyRange
-
                 Connections {
                     target: tabBox
                     function onCurrentIndexChanged() {
