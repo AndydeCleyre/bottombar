@@ -19,3 +19,7 @@ $ git clone https://github.com/AndydeCleyre/bottombar
 $ mkdir -p ~/.local/share/kwin/tabbox
 $ cp -r bottombar/bottombar ~/.local/share/kwin/tabbox/
 ```
+
+## Preview
+
+![Image](https://github.com/user-attachments/assets/25e87903-9d4e-42ef-a4fd-3465416d4cec)
