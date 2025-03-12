@@ -29,25 +29,29 @@ KWin.TabBoxSwitcher {
         x: screenGeometry.x
         y: screenGeometry.y + screenGeometry.height - height
 
-        mainItem: PlasmaComponents.ScrollView {
+        mainItem: Item {
             id: dialogMainItem
-
-            focus: true
-
-            contentWidth: tabBox.screenGeometry.width - dialog.margins.left - dialog.margins.right
+            width: tabBox.screenGeometry.width - dialog.margins.left - dialog.margins.right
             height: tabBox.screenGeometry.height * 0.15
+            focus: true
 
             LayoutMirroring.enabled: Qt.application.layoutDirection === Qt.RightToLeft
             LayoutMirroring.childrenInherit: true
 
             ListView {
                 id: thumbnailListView
+                anchors.fill: parent
                 orientation: ListView.Horizontal
                 focus: true
                 model: tabBox.model
                 spacing: Kirigami.Units.smallSpacing
                 highlightMoveDuration: Kirigami.Units.longDuration
                 highlightResizeDuration: 0
+                clip: true
+
+                preferredHighlightBegin: currentItem ? width / 2 - currentItem.width / 2 : 0
+                preferredHighlightEnd: preferredHighlightBegin
+                highlightRangeMode: ListView.ApplyRange
 
                 Connections {
                     target: tabBox

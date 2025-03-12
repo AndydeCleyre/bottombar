@@ -7,9 +7,9 @@
                 "Name": "Andy Kluger"
             }
         ],
-        "Description": "Window switcher with a horizontal bar, triggering Karousel focus actions",
-        "Id": "karousel-filmstrip",
+        "Description": "Window switcher with a horizontal bar at the bottom of the screen",
+        "Id": "bottombar",
         "License": "GPLv2+",
-        "Name": "Karousel Filmstrip"
+        "Name": "Bottom Bar"
     }
 }
